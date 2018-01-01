@@ -37,6 +37,9 @@ class MLDataset:
             for mlDataIdx in xrange(self.datasetSize):
                 self.getMainDataset().loc[mlDataIdx, columnKey ] = mlPreprocessor.getEncoder(columnKey).transform( self.getMainDataset().loc[mlDataIdx, columnKey ] )
 
+    def getKeyList(self, dataKey):
+        return list(self.getMainDataset()[dataKey].values)
+
     def printDataForDebug(self):
         print self.getMainDataset()
 

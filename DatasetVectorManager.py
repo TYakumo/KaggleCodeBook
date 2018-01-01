@@ -5,10 +5,10 @@ class DatasetVectorManager:
     def generateTrainVector(self, generateTarget=True):
         print 'Generating Training ML vectors ...'
         rawDataset = self.mlDataset.getDataset("rawDataset")
-        self.vectorValue = rawDataset.values[:,1:]
+        self.vectorValue = rawDataset.values[:,2:]
 
         if generateTarget == True:
-            self.targetValue = rawDataset.values[:,0]
+            self.targetValue = rawDataset.values[:,1]
 
         print 'Total : ' + str(len(self.vectorValue)) + ' records'
 
@@ -21,7 +21,10 @@ class DatasetVectorManager:
     def generateTestVector(self):
         print 'Generating Testing ML vectors ...'
         rawDataset = self.mlDataset.getDataset("rawDataset")
-        self.vectorValue = rawDataset.values[:,:]
+        self.vectorValue = rawDataset.values[:,1:]
+        for valueList in self.vectorValue:
+            for value in valueList:
+                value = float(value)
         print 'Total  : ' + str(len(self.vectorValue)) + ' records'
 
     def getVector(self):
@@ -29,3 +32,6 @@ class DatasetVectorManager:
 
     def getTargetVector(self):
         return self.targetValue
+
+    def printDataForDebug(self):
+        print self.vectorValue

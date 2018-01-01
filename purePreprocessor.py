@@ -22,7 +22,7 @@ def main():
     mlTestDataset = MLData.MLDataset()
     loadData(mlDataset=mlDataset, mlTestDataset=mlTestDataset)
 
-    dataColumnKey = ['T1_V4', 'T1_V5', 'T1_V6', 'T1_V7', 'T1_V8', 'T1_V9', 'T1_V11', 'T1_V12', 'T1_V15',
+    dataColumnKey = ['T1_V4', 'T1_V5', 'T1_V6', 'T1_V7', 'T1_V8', 'T1_V9', 'T1_V11', 'T1_V12', 'T1_V15', 'T1_V16', 'T1_V17',
     'T2_V3', 'T2_V5', 'T2_V11', 'T2_V12', 'T2_V13']
     dataPreprocessor = DataPreprocessor.DataPreprocessor()
     dataPreprocessor.addDataset(mlDataset=mlDataset, dataColumnKey=dataColumnKey)

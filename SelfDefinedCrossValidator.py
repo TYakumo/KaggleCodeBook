@@ -1,6 +1,7 @@
 import    numpy     as       np
 import    time
 import    DatasetVectorManager      as VectorManager
+import    MetricScorer              as MetricScorer
 import    copy
 from      sklearn   import   metrics
 from      sklearn   import   svm
@@ -32,6 +33,7 @@ class SelfDefinedCrossValidator:
     def doCrossValidation(self, rcv):
         cv_scores = []
         nowIter = 0
+        scorer = MetricScorer.MetricScorer()
 
         for train_index, test_index in rcv:
             print 'Cross Validation ' + str(nowIter)
@@ -53,7 +55,9 @@ class SelfDefinedCrossValidator:
         #    cv_scores.append(res)
             stopTime = time.time()
             print 'Execution time : ' + str( (stopTime-startTime) )
-            res = metrics.f1_score(cvTestVector.getTargetVector(), self.classifier.getResult(testData=cvTestVector))
+            print cvTestVector.getTargetVector()
+            print self.classifier.getResult(testData=cvTestVector)
+            res = scorer.normalizedGiniScore(cvTestVector.getTargetVector(), self.classifier.getResult(testData=cvTestVector))
             print 'Result : ' + str(res)
             cv_scores.append(res)
 
